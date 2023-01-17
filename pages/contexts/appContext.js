@@ -16,7 +16,7 @@ export const AppContextProvider = ({ children }) => {
   //ComponentDidMouunt
   React.useEffect(() => {
     getData()
-  }, [variableState]);
+  }, []);
 
   //
   const values = React.useMemo(() => (

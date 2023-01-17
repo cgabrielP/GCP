@@ -8,7 +8,7 @@ import Product from './components/Product'
 import { Container, SimpleGrid } from '@chakra-ui/react'
 
 export default function Home() {
-  const { variableState, setVariableState, getData } = useAppContext();
+  const { variableState } = useAppContext();
   
 
   return (
@@ -32,7 +32,9 @@ export default function Home() {
             <Product name={name} gender={gender} url={image} id={id} />
           );
         })
-      }</SimpleGrid></Container>
+      }
+      </SimpleGrid> 
+      </Container>
       <h1 className="title">
           CONTEXT APP {`${variableState}`}
         </h1>

@@ -7,7 +7,7 @@ const Product = ({ name, gender,url, id }) => {
   return (
     <>
    
-        <Card maxW='sm' size='20'mt='3' alignItems={'center'}>
+        <Card maxW='sm' size='20'mt='3' alignItems={'center'} key={id}>
           <CardBody>
             <Image
               src={url}

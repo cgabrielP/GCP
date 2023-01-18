@@ -20,23 +20,20 @@ export default function Home() {
       </Head>
       <NavBar />
       <Header />
-      <Container maxW="container.xl" bg="gray.100">
+      <Container maxW="container.xl" bg="gray.100" py={5}>
       <SimpleGrid columns={3} >
       {
         !!products.results && // Validar que exista la variable o datos
         products.results.length > 0 &&
-        products.results.map(({ name, id, gender, image }) => {
+        products.results.map(({ name, id, gender, image, index }) => {
           return (
 
-            <Product name={name} gender={gender} url={image} id={id} />
+            <Product name={name} gender={gender} url={image} id={id} index={index} />
           );
         })
       }
       </SimpleGrid> 
       </Container>
-      <h1 className="title">
-          CONTEXT APP {`${products}`}
-        </h1>
       <Footer/>
     </>
   )

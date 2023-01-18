@@ -41,7 +41,7 @@ import {
   export default function LargeWithLogoCentered() {
     return (
       <Box
-        bg={useColorModeValue('gray.50', 'gray.900')}
+        bg={useColorModeValue('gray.100', 'gray.900')}
         color={useColorModeValue('gray.700', 'gray.200')}>
         <Container as={Stack} maxW={'6xl'} py={10}>
           <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
@@ -50,13 +50,6 @@ import {
               <Link href={'#'}>Overview</Link>
               <Stack direction={'row'} align={'center'} spacing={2}>
                 <Link href={'#'}>Features</Link>
-                <Tag
-                  size={'sm'}
-                  bg={useColorModeValue('green.300', 'green.800')}
-                  ml={2}
-                  color={'white'}>
-                  New
-                </Tag>
               </Stack>
               <Link href={'#'}>Tutorials</Link>
               <Link href={'#'}>Pricing</Link>

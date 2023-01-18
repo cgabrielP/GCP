@@ -3,11 +3,11 @@ import {  Button, ButtonGroup, Card, CardBody, CardFooter, Heading, Image,  Stac
 import Link from 'next/link'
 import React from 'react'
 
-const Product = ({ name, gender,url, id }) => {
+const Product = ({ name, gender,url, id,index }) => {
   return (
     <>
    
-        <Card maxW='sm' size='20'mt='3' alignItems={'center'} key={id}>
+        <Card maxW='sm' size='20'mt='3' alignItems={'center'} key={index}>
           <CardBody>
             <Image
               src={url}

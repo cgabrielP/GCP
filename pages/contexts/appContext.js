@@ -6,11 +6,18 @@ export const AppContext = createContext(null);
 //Provider
 export const AppContextProvider = ({ children }) => {
   const [user, setUser] = React.useState(false);
-  const [variableState, setVariableState] = React.useState([]);
+  const [products, setProducts] = React.useState([]);
+  const [product, setProduct] = React.useState([]);
   const getData = () => {
     fetch('https://rickandmortyapi.com/api/character/')
       .then(response => response.json())
-      .then(json => { setVariableState(json) })
+      .then(json => { setProducts(json) })
+
+  }
+  const getProductByID = ({id}) => {
+    fetch(`https://rickandmortyapi.com/api/character/${id}`)
+      .then(response => response.json())
+      .then(json => { setProduct(json) })
 
   }
   //ComponentDidMouunt
@@ -20,11 +27,11 @@ export const AppContextProvider = ({ children }) => {
 
   //
   const values = React.useMemo(() => (
-    { variableState, user ,    // States que seran visibles en el contexto.
-      setVariableState, setUser, getData  // Funciones que son exportadas para manejo externo.
+    { products, user , product,   // States que seran visibles en el contexto.
+      setProducts, setUser, getData, getProductByID  // Funciones que son exportadas para manejo externo.
     }), 
     [ 
-      variableState, user ]);   // States que serán visibles en el contexto.
+      products, user,product ]);   // States que serán visibles en el contexto.
 
       return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
 }

@@ -41,32 +41,22 @@ function NavItems({ isOpen }) {
           </MenuList>
         </Menu>
 
-        <NavLinks to="/SignIn">
-          <Button
-            as={"a"}
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            href={"#"}
-          >
-            Sign In
-          </Button>
+        <NavLinks to={"/SignIn"}>
+         Sign In
         </NavLinks>
-        <NavLinks to="/SignUp">
-          <Button
-            fontSize={"sm"}
+        <NavLinks to={"/SignUp"}>
+          <Button  fontSize={"sm"}
             fontWeight={600}
             color={"white"}
             bg={"pink.400"}
             href={"#"}
             _hover={{
               bg: "pink.300",
-            }}
-          >
-            Sign Up
-          </Button>
+            }}> Sign Up</Button>
+           
+          
         </NavLinks>
-        <NavLinks to="/bag">
+        <NavLinks to={"/bag"}>
           <Icon as={FaShoppingBag} />
         </NavLinks>
       </Stack>

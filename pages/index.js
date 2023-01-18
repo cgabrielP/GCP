@@ -8,9 +8,8 @@ import Product from './components/Product'
 import { Container, SimpleGrid } from '@chakra-ui/react'
 
 export default function Home() {
-  const { variableState } = useAppContext();
+  const { products } = useAppContext();
   
-
   return (
     <>
       <Head>
@@ -24,9 +23,9 @@ export default function Home() {
       <Container maxW="container.xl" bg="gray.100">
       <SimpleGrid columns={3} >
       {
-        !!variableState.results && // Validar que exista la variable o datos
-        variableState.results.length > 0 &&
-        variableState.results.map(({ name, id, gender, image }) => {
+        !!products.results && // Validar que exista la variable o datos
+        products.results.length > 0 &&
+        products.results.map(({ name, id, gender, image }) => {
           return (
 
             <Product name={name} gender={gender} url={image} id={id} />
@@ -36,7 +35,7 @@ export default function Home() {
       </SimpleGrid> 
       </Container>
       <h1 className="title">
-          CONTEXT APP {`${variableState}`}
+          CONTEXT APP {`${products}`}
         </h1>
       <Footer/>
     </>

@@ -1,7 +1,7 @@
 import { Text } from "@chakra-ui/react";
 import Link from "next/link";
 
-const NavLinks = ({ children, isLast, to = "/", ...rest }) => {
+const NavLinks = ({ children,  to = "/", ...rest }) => {
   return (
     <>
       <Link p href={to}>

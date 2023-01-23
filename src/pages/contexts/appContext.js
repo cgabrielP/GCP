@@ -8,6 +8,7 @@ export const AppContextProvider = ({ children }) => {
   const [user, setUser] = React.useState(false);
   const [products, setProducts] = React.useState([]);
   const [product, setProduct] = React.useState([]);
+  
   const getData = () => {
     fetch('https://rickandmortyapi.com/api/character/')
       .then(response => response.json())

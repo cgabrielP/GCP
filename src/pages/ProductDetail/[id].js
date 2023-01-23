@@ -7,6 +7,7 @@ import Footer from '../components/Footer'
 
 
 const ProductDetail = () => {
+  
     const { product,getProductByID } = useAppContext()
     const router =useRouter();
     const{id}=router.query

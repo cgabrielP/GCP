@@ -1,26 +1,50 @@
-import { Box, Button, Checkbox, Flex, FormControl, FormLabel, Heading, Input, Link, Stack, useColorModeValue } from '@chakra-ui/react'
+import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Link, Stack, useColorModeValue } from '@chakra-ui/react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useState } from 'react'
 
 const FormProduct = () => {
 
-    const [product, setProduct] = React.useState({
+    const [product, setProduct] = useState({
         name: '',
         description: '',
         url: '',
         price: 0,
     })
+
     const router = useRouter()
 
-    const handleSubmit = (e) => {
+    function handleOnChange(changeEvent) {
+        const reader = new FileReader();
+
+        reader.onload = function (onLoadEvent) {
+            const imageData = onLoadEvent.target.result;
+            setProduct({ ...product, url: imageData })
+        }
+
+        reader.readAsDataURL(changeEvent.target.files[0]);
+    }
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        const form = e.currentTarget
+        const fileInput = Array.from(form.elements).find(({ name }) => name === 'url')
+        const formData = new FormData();
+        for (const file of fileInput.files) {
+            formData.append('file', file)
+        }
+
+        formData.append('upload_preset', 'my-uploads')
+        const data = await axios.post('https://api.cloudinary.com/v1_1/dwpjhyrfl/image/upload', formData)
+        setProduct({ ...product, url: data.data.secure_url });
+        console.log(product);
         axios.post('api/products', product
         );
         router.push('/')
     }
-    const handleInputChange = ({ target: { name, value } }) => setProduct({ ...product, [name]: value });
-    console.log(product)
+
+    const handleInputChange = ({ target: { name, value } }) => { setProduct({ ...product, [name]: value }) };
+
     return (
         <form onSubmit={handleSubmit}>
             <FormControl >
@@ -42,7 +66,8 @@ const FormProduct = () => {
                                 <FormLabel>Description</FormLabel>
                                 <Input type="text" name='description' onChange={handleInputChange} />
                                 <FormLabel>Image</FormLabel>
-                                <Input type='file' name='url' onChange={handleInputChange} />
+                                <input type='file' name='url' onChange={handleOnChange} />
+                                <img src={product.url} />
 
                                 <FormLabel>Price</FormLabel>
                                 <Input type='text' name='price' onChange={handleInputChange} />
@@ -64,7 +89,7 @@ const FormProduct = () => {
                     </Stack>
                 </Flex>
 
-               
+
             </FormControl>
         </form>
 

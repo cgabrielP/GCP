@@ -24,6 +24,8 @@ const FormProduct = () => {
 
         reader.readAsDataURL(changeEvent.target.files[0]);
     }
+    const handleInputChange = ({ target: { name, value } }) => { setProduct({ ...product, [name]: value }) };
+    console.log(product);
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -34,6 +36,8 @@ const FormProduct = () => {
             formData.append('file', file)
         }
 
+
+
         formData.append('upload_preset', 'my-uploads')
         const data = await axios.post('https://api.cloudinary.com/v1_1/dwpjhyrfl/image/upload', formData)
         setProduct({ ...product, url: data.data.secure_url });
@@ -43,7 +47,7 @@ const FormProduct = () => {
         router.push('/')
     }
 
-    const handleInputChange = ({ target: { name, value } }) => { setProduct({ ...product, [name]: value }) };
+
 
     return (
         <form onSubmit={handleSubmit}>

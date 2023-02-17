@@ -8,15 +8,17 @@ export const AppContextProvider = ({ children }) => {
   const [user, setUser] = React.useState(false);
   const [products, setProducts] = React.useState([]);
   const [product, setProduct] = React.useState([]);
-  
-  const getData = () => {
-    fetch('https://rickandmortyapi.com/api/character/')
+  const [cartItems, setCartItems] = React.useState([]);
+  const [flag, setFlag] = React.useState(true);
+
+  const getData = async () => {
+    await fetch('http://localhost:3000/api/products')
       .then(response => response.json())
       .then(json => { setProducts(json) })
 
   }
-  const getProductByID = ({id}) => {
-    fetch(`https://rickandmortyapi.com/api/character/${id}`)
+  const getProductByID = async ({ id }) => {
+    await fetch(`http://localhost:3000/api/products${id}`)
       .then(response => response.json())
       .then(json => { setProduct(json) })
 
@@ -28,20 +30,21 @@ export const AppContextProvider = ({ children }) => {
 
   //
   const values = React.useMemo(() => (
-    { products, user , product,   // States que seran visibles en el contexto.
-      setProducts, setUser, getData, getProductByID  // Funciones que son exportadas para manejo externo.
-    }), 
-    [ 
-      products, user,product ]);   // States que serán visibles en el contexto.
+    {
+      flag,products, user, product, cartItems,   // States que seran visibles en el contexto.
+      setProducts, setUser, getData, getProductByID, setCartItems, setFlag  // Funciones que son exportadas para manejo externo.
+    }),
+    [
+      products, user, product, cartItems, flag]);   // States que serán visibles en el contexto.
 
-      return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
+  return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
 }
 
 //
 export function useAppContext() {
   const context = useContext(AppContext);
 
-  if(!context){
+  if (!context) {
     console.error('Error deploying App Context!!!');
   }
 

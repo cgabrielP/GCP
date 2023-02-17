@@ -4,7 +4,7 @@ import Link from "next/link";
 const NavLinks = ({ children,  to = "/", ...rest }) => {
   return (
     <>
-      <Link p href={to}>
+      <Link href={to}>
         <Text display="block" {...rest}>
           {children}
         </Text>

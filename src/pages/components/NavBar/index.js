@@ -8,8 +8,8 @@ import NavItems from './NavItems';
 function NavBar() {
     const { isOpen, onToggle } = useDisclosure()
 
-/*     const toggle = () => setIsOpen(!isOpen);
- */    return (
+ const toggle = () => setIsOpen(!isOpen);
+  return (
         <>
             <NavBarContainer>
                 <Logo />

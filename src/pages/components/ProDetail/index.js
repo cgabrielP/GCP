@@ -9,7 +9,7 @@ const ProDetail = ({product}) => {
             <SimpleGrid columns={{base: 1, md: 2}} spacing={10}>
                 <Flex>
                     <Image rounded={'md'} alt={'feature image'}
-                        src={product.image}
+                        src={product.url}
                         objectFit={'cover'}
                         w={'480px'}
                     />

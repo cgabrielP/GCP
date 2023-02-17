@@ -1,12 +1,14 @@
 import React from 'react'
 import FormProduct from '../components/FormProduct'
+import NavBar from '../components/NavBar'
 
-const prueba = () => {
+const UploadProduct = () => {
   return (
     <>
+      <NavBar />
       <FormProduct />
     </>
   )
 }
 
-export default prueba
+export default UploadProduct
